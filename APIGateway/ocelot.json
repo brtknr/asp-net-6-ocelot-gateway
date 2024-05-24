@@ -1,0 +1,57 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/playerservice/player/{id}",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/player/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6501
+        }
+      ],
+      "Key": "Player"
+    },
+    {
+      "UpstreamPathTemplate": "/playerservice/bet/{id}",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "DownstreamPathTemplate": "/api/bet/suggestions/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7501
+        }
+      ],
+      "Key": "Bet"
+    },
+    {
+      "UpstreamPathTemplate": "/playerservice/applypromo",
+      "UpstreamHttpMethod": [
+        "Post"
+      ],
+      "DownstreamPathTemplate": "/applier",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8501
+        }
+      ]
+    }
+  ],
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "Player",
+        "Bet"
+      ],
+      "UpstreamPathTemplate": "/{id}",
+    }
+  ]
+}
